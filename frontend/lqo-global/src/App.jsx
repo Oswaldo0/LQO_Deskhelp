@@ -1,43 +1,28 @@
-import { Badge } from "./core/components/Badge";
-import { Button } from "./core/components/Button";
-import "./App.css";
+import { Button } from "./shared/components/Button.tsx";
+import { Input } from "./shared/components/Input.tsx";
+import { TicketsForm } from "./features/tickets/components/TicketsForm.jsx";
 
 export default function App() {
+  const handleInputChange = (valor) => {
+    console.log("Valor ingresado:", valor);
+  };
+
   return (
     <>
-      <div className="min-h-screen bg-slate-50 p-10 space-y-4">
-        <h1 className="text-4xl font-black text-brown underline">
-          Componentes
+      <div className="p-10">
+        <h1 className="mb-4">Prueba de input</h1>
+        <Input placeholder="Ingrese un valor" onChange={handleInputChange} />
+      </div>
+
+      <div className="min-h-screen bg-slate-50 p-8 flex items-center justify-center">
+        <Button label="Crear Ticket" onClick={() => alert("Ticket creado!")} />
+      </div>
+      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-8">
+          Panel de soporte
         </h1>
 
-        <div className="mt-5 p-4 bg-red-500 rounded-xl text-black">
-          Fondo rojo dentro de una tabla blanca
-        </div>
-        <div className="mt-5 flex gap-2">
-          <Badge estado="Abierto" />
-          <Badge estado="Cerrado" />
-          <Badge estado="En Proceso" />
-          <Badge estado="Pendiente" />
-          <Badge estado="Alta Prioridad" />
-          <Badge estado="Baja Prioridad" />
-          <Badge estado="Media Prioridad" />
-        </div>
-        {/*Botones*/}
-      </div>
-      <div className="bg-white p6 rounded-2x1 shadow-sm border border-slate-100 space-y-4 max-w-md">
-        <h3 className="text-sm font-semibold text-slate700">Botones</h3>
-
-        <div className="space-y-2">
-          {/*Botón normal*/}
-          <Button>Asignarme Ticket</Button>
-
-          {/*Botón deshabilitado*/}
-          <Button disabled={true}>Guardar en la base de datos</Button>
-          {/*Botón persoalizado*/}
-          <Button className="w-full bg-slate-900 hover:bg-slate-800">
-            Cerrar sesión
-          </Button>
-        </div>
+        <TicketsForm />
       </div>
     </>
   );
